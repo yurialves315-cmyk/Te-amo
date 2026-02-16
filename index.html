@@ -5,36 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para você</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Animação Suave para a página toda */
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Fundo preto sólido imediato para evitar tela branca */
         body {
-            font-family: 'Georgia', serif;
-            background: #0f050d; /* Cor de fundo sólida caso o gradiente falhe */
-            background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
-            color: #fff;
+            margin: 0;
+            padding: 20px;
+            background-color: #0f050d; 
+            color: #ffffff;
+            font-family: sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            padding: 30px 20px;
             text-align: center;
-            overflow-x: hidden;
-            /* Aplica a animação aqui no body para garantir que tudo apareça */
-            animation: fadeInPage 1.5s ease-out forwards;
+            min-height: 100vh;
         }
 
         .foto-moldura {
-            width: 55%;
-            max-width: 200px;
+            width: 180px;
+            height: auto;
             border-radius: 15px;
             border: 3px solid #ff4d94;
-            margin-bottom: 15px;
-            box-shadow: 0 10px 25px rgba(255, 77, 148, 0.3);
+            margin: 20px 0;
         }
-        
+
+        .contador-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .dias-num {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ff4d94;
+            display: block;
+        }
+
+        .mensagem-card {
+            font-style: italic;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #ff4d94;
+            max-width: 320px;
+            margin-bottom: 20px;
+        }
+
+        .audio-container {
+            width: 100%;
+            max-width: 300px;
+            margin-top: 10px;
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        /* Corações simplificados */
+        .heart {
+            position: fixed;
+            bottom: -10px;
+            color: #ff4d94;
+            z-index: -1;
+            animation: move 5s linear infinite;
+        }
+        @keyframes move {
+            to { transform: translateY(-110vh); }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="amor.jpg" alt="Nossa Foto" class="foto-moldura">
+
+    <h1 style="font-size: 1.2rem;">Para o amor da minha vida!</h1>
+    <p style="color: #ffb3d9; font-size: 0.8rem; margin-bottom: 20px;">❤️ Juntos desde 14 de julho de 2025 ❤️</p>
+
+    <div class="contador-card">
+        <span id="dias" class="d
+            
