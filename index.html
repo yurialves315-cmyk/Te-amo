@@ -8,24 +8,43 @@
         body {
             margin: 0;
             padding: 20px;
-            background: #0f050d !important; /* Fundo escuro forçado */
-            color: #ffffff !important; /* Texto branco forçado */
-            font-family: sans-serif;
+            background: #0f050d !important;
+            color: #ffffff !important;
+            font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             min-height: 100vh;
+            overflow: hidden;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* Escondidos por padrão */
+        .revelar {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+            pointer-events: none;
+        }
+
+        /* Classe para mostrar */
+        .visivel {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .foto-moldura {
-            width: 200px;
+            width: 180px;
             border-radius: 15px;
             border: 3px solid #ff4d94;
+            margin-top: 20px;
             margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(255, 77, 148, 0.2);
         }
 
-        /* Garantindo que o card do contador apareça */
         .contador-card {
             background: #1a0a16; 
             padding: 20px;
@@ -38,93 +57,38 @@
         .dias-num {
             font-size: 3.5rem;
             font-weight: bold;
-            color: #ff4d94 !important; /* Rosa bem forte */
+            color: #ff4d94 !important;
             display: block;
         }
 
-        .dias-label {
-            color: #ffffff;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-        }
-
-        /* Garantindo que o texto da mensagem apareça */
         .mensagem-card {
-            color: #ffffff !important;
             font-style: italic;
             line-height: 1.6;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             padding: 20px;
             border-radius: 15px;
             max-width: 320px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             border-left: 4px solid #ff4d94;
         }
 
-        .audio-container {
-            width: 300px;
-            margin-top: 10px;
-        }
-
-        audio {
-            width: 100%;
-        }
-
-        .heart {
+        .instrucao {
             position: fixed;
-            bottom: -10px;
+            bottom: 20px;
+            font-size: 0.7rem;
+            color: #ffb3d9;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        .heart-click {
+            position: absolute;
             color: #ff4d94;
-            z-index: -1;
-            animation: move 5s linear infinite;
-        }
-        @keyframes move {
-            to { transform: translateY(-110vh); }
-        }
-    </style>
-</head>
-<body>
-
-    <img src="amor.jpg" alt="Foto" class="foto-moldura">
-
-    <h1 style="font-size: 1.4rem; color: #ffffff;">Para o amor da minha vida!</h1>
-    <p style="color: #ffb3d9; margin-bottom: 10px;">❤️ Juntos desde 14 de julho de 2025 ❤️</p>
-
-    <div class="contador-card">
-        <span id="dias" class="dias-num">0</span>
-        <span class="dias-label">DIAS DE MUITO AMOR</span>
-    </div>
-
-    <div class="mensagem-card">
-        "Desde que você chegou, eu descobri uma versão de mim que nem sabia que existia. Você me faz querer ser alguém melhor todos os dias, e cada segundo ao seu lado se torna único, como se o tempo parasse só pra gente se amar. Obrigado por tudo!"
-    </div>
-
-    <div class="audio-container">
-        <audio controls>
-            <source src="musica.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <script>
-        // Cálculo de dias simplificado
-        function atualizarContador() {
-            const dataInicio = new Date(2025, 6, 14); // 14 de Julho
-            const hoje = new Date();
-            const diffMilis = hoje - dataInicio;
-            const diffDias = Math.floor(diffMilis / (1000 * 60 * 60 * 24));
-            document.getElementById('dias').innerText = diffDias > 0 ? diffDias : 0;
-        }
-        atualizarContador();
-
-        // Corações de fundo
-        setInterval(() => {
-            const h = document.createElement('div');
-            h.className = 'heart';
-            h.innerHTML = '❤️';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = (Math.random() * 10 + 10) + 'px';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }, 800);
-    </script>
-</body>
-</html>
+            pointer-events: none;
+            animation: fly
+            
