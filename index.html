@@ -6,7 +6,6 @@
     <title>Para o meu amor</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: 'Georgia', serif;
             background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
@@ -19,22 +18,98 @@
             overflow: hidden;
             text-align: center;
         }
-
-        /* Animação de entrada suave */
-        .fade-in {
-            animation: fadeInPage 2s ease-in-out;
-        }
-
+        .fade-in { animation: fadeInPage 2s ease-in-out; }
         @keyframes fadeInPage {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Foto reduzida em 20% (ajustada para 60% da tela) */
         .foto-moldura {
             width: 60%;
             max-width: 250px;
             border-radius: 15px;
             border: 3px solid #ff4d94;
-            box-shadow: 0 10px 25px rgba(255, 77,
-                                         
+            box-shadow: 0 10px 25px rgba(255, 77, 148, 0.3);
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 1.6rem; margin-bottom: 8px; padding: 0 15px; }
+        .data-txt {
+            font-size: 0.9rem;
+            color: #ffb3d9;
+            margin-bottom: 25px;
+            animation: pulseData 2s infinite ease-in-out;
+        }
+        @keyframes pulseData {
+            0%, 100% { opacity: 0.7; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.03); }
+        }
+        .contador-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 179, 217, 0.2);
+            backdrop-filter: blur(10px);
+            margin-bottom: 25px;
+        }
+        .dias-num { font-size: 4rem; font-weight: bold; color: #ff4d94; line-height: 1; }
+        .label-dias { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: #ffb3d9; }
+        .spotify-player { width: 85%; max-width: 320px; margin-top: 10px; min-height: 80px; }
+        .heart {
+            position: fixed;
+            bottom: -10vh;
+            color: #ff4d94;
+            font-size: 18px;
+            pointer-events: none;
+            animation: moveHearts 5s linear infinite;
+            z-index: -1;
+        }
+        @keyframes moveHearts {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="fade-in">
+
+    <img src="amor.jpg" alt="Nossa Foto" class="foto-moldura">
+
+    <h1>Para o amor da minha vida!</h1>
+    <div class="data-txt">❤️ Juntos desde 14 de julho de 2025 ❤️</div>
+
+    <div class="contador-card">
+        <div id="dias" class="dias-num">0</div>
+        <div class="label-dias">Dias de muito amor</div>
+    </div>
+
+    <div class="spotify-player">
+        <iframe style="border-radius:12px" 
+            src="https://open.spotify.com/embed/track/2SIdEPrpInXp09vunIAn6B?utm_source=generator" 
+            width="100%" 
+            height="80" 
+            frameBorder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <script>
+        function calcular() {
+            const dataInicio = new Date('2025-07-14T00:00:00');
+            const agora = new Date();
+            const diff = Math.floor((agora - dataInicio) / (1000 * 60 * 60 * 24));
+            document.getElementById('dias').innerText = diff;
+        }
+        calcular();
+
+        function criarCoracao() {
+            const h = document.createElement('div');
+            h.classList.add('heart');
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(h);
+            setTimeout(() => { h.remove(); }, 5000);
+        }
+        setInterval(criarCoracao, 400);
+    </script>
+</body>
+</html>
