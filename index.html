@@ -3,76 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para meu Amor</title>
+    <title>Para o meu amor</title>
     <style>
-        body { 
-            background: radial-gradient(circle, #3d1431 0%, #0f050d 100%); 
-            color: white; 
-            text-align: center; 
-            font-family: 'Georgia', serif; 
+        body {
             margin: 0;
+            background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
+            color: white;
+            font-family: 'serif', Georgia, serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-        }
-        .container { padding: 20px; animation: fadeIn 2s; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        
-        img { 
-            width: 85%; 
-            max-width: 320px; 
-            border-radius: 20px; 
-            border: 3px solid #ff4d94; 
-            box-shadow: 0 0 20px rgba(255, 77, 148, 0.5);
+            overflow: hidden;
+            text-align: center;
+            animation: fadeInPage 2s ease-in;
         }
 
-        .pulse { 
-            animation: pulse 2s infinite; 
-            color: #ffb3d9; 
-            font-size: 1.1rem;
-            margin: 15px 0;
+        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Moldura ajustada para mostrar a foto inteira */
+        .foto-box {
+            width: 80%;
+            max-width: 320px;
+            border-radius: 15px;
+            border: 3px solid #ff4d94;
+            box-shadow: 0 0 25px rgba(255, 77, 148, 0.4);
+            margin-bottom: 20px;
+            overflow: hidden;
         }
-        @keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }
 
-        .dias { font-size: 4rem; color: #ff4d94; font-weight: bold; margin: 0; }
-        .label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+        .foto-box img {
+            width: 100%;
+            display: block;
+        }
 
-        .heart { position: fixed; bottom: -10vh; animation: fly 5s linear infinite; color: #ff4d94; z-index: -1; }
-        @keyframes fly { to { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        h1 { font-size: 1.8rem; margin: 10px 0; }
+
+        /* Data Pulsando */
+        .data-txt {
+            color: #ffb3d9;
+            font-size: 1rem;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+        }
+
+        /* Contador */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 179, 217, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .dias-num { font-size: 4.5rem; color: #ff4d94; font-weight: bold; line-height: 1; }
+        .dias-label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: #ffb3d9; }
+
+        /* Corações subindo */
+        .heart {
+            position: fixed;
+            bottom: -10%;
+            color: #ff4d94;
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: moveUp 5s linear infinite;
+        }
+
+        @keyframes moveUp {
+            to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <img src="amor.jpg" alt="Nossa Foto">
-        
-        <h1>Para o amor da minha vida!</h1>
-        <div class="pulse">❤️ Juntos desde 14/07/2025 ❤️</div>
 
-        <div style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 20px;">
-            <p id="contador" class="dias">0</p>
-            <p class="label">Dias de muito amor</p>
-        </div>
+    <div class="foto-box">
+        <img src="amor.jpg" alt="Nós">
+    </div>
+
+    <h1>Para o amor da minha vida!</h1>
+    <div class="data-txt">Juntos desde 14 de julho de 2025</div>
+
+    <div class="card">
+        <div id="contagem" class="dias-num">0</div>
+        <div class="dias-label">Dias de Amor</div>
     </div>
 
     <script>
-        // Cálculo dos dias
-        const dataInic = new Date('2025-07-14T00:00:00');
+        // Calcular Dias
+        const inicio = new Date('2025-07-14T00:00:00');
         const hoje = new Date();
-        const diff = Math.floor((hoje - dataInic) / (1000 * 60 * 60 * 24));
-        document.getElementById('contador').innerText = diff;
+        const diff = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
+        document.getElementById('contagem').innerText = diff;
 
-        // Corações subindo
-        setInterval(() => {
-            const h = document.createElement('div');
-            h.innerHTML = '❤️'; h.className = 'heart';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.fontSize = Math.random() * 20 + 10 + 'px';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }, 400);
+        // Gerador de corações
+        function addHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+        setInterval(addHeart, 400);
     </script>
 </body>
 </html>
-          
