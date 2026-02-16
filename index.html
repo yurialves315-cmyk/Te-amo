@@ -9,15 +9,13 @@
 
         * {
             -webkit-tap-highlight-color: transparent;
-            outline: none;
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
             padding: 20px;
-            background-color: #000000;
-            background: radial-gradient(circle, #2b0f23 0%, #000000 100%);
+            background: #000;
             color: #ffffff;
             font-family: 'Playfair Display', serif;
             display: flex;
@@ -25,25 +23,48 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            text-align: center;
             overflow: hidden;
             touch-action: manipulation;
-            transition: background 3s ease, background-color 3s ease;
+            transition: background 3s ease;
         }
 
+        /* Camada de Estrelas */
+        #stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Tipografia Romântica */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
+            font-size: 3rem;
             color: #ffb3d9;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(255, 179, 217, 0.3);
+            text-shadow: 0 0 15px rgba(255, 179, 217, 0.6);
         }
 
         .revelar {
             display: none;
             opacity: 0;
-            transform: translateY(25px);
-            transition: opacity 1.8s ease, transform 1.8s ease;
+            transform: translateY(20px);
+            transition: all 1.5s ease;
         }
 
         .visivel {
@@ -53,43 +74,43 @@
         }
 
         .foto-moldura {
-            width: 190px;
-            border-radius: 100px 100px 20px 20px;
-            border: 2px solid rgba(255, 179, 217, 0.3);
+            width: 200px;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 179, 217, 0.4);
             margin: 20px 0;
-            box-shadow: 0 15px 35px rgba(255, 77, 148, 0.2);
+            box-shadow: 0 0 25px rgba(255, 77, 148, 0.4);
         }
 
         .mensagem-card {
             font-style: italic;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.8;
-            color: #f0f0f0;
-            max-width: 320px;
+            max-width: 330px;
             padding: 15px;
-            letter-spacing: 0.5px;
+            color: #fefefe;
         }
 
         .contador-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 77, 148, 0.05);
             padding: 20px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 179, 217, 0.15);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 179, 217, 0.3);
             width: 280px;
-            margin-top: 10px;
+            box-shadow: 0 0 20px rgba(255, 77, 148, 0.15);
         }
 
         .dias-num {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: bold;
             color: #ff4d94;
+            text-shadow: 0 0 10px rgba(255, 77, 148, 0.6);
         }
 
+        /* Corações Caindo */
         .bg-heart {
             position: fixed;
             top: -10%;
-            color: rgba(255, 77, 148, 0.25);
-            font-size: 18px;
+            color: rgba(255, 77, 148, 0.3);
             z-index: -1;
             animation: fall linear infinite;
         }
@@ -109,27 +130,28 @@
 
         @keyframes floatUp {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: translateY(-120px) scale(1.8); opacity: 0; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
         }
 
         .instrucao {
             position: fixed;
             bottom: 30px;
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             letter-spacing: 3px;
             color: #ffb3d9;
-            opacity: 0.5;
+            opacity: 0.6;
             text-transform: uppercase;
         }
 
         audio {
             width: 260px;
-            height: 35px;
-            filter: invert(1) hue-rotate(180deg) opacity(0.6);
+            filter: invert(1) hue-rotate(180deg) opacity(0.7);
         }
     </style>
 </head>
 <body id="mainBody">
+
+    <div id="stars-container"></div>
 
     <h1 id="step1" class="revelar">Para o amor da minha vida</h1>
 
@@ -139,7 +161,7 @@
         </audio>
     </div>
 
-    <img id="step3" src="amor.jpg" alt="Nossa Memória" class="revelar foto-moldura">
+    <img id="step3" src="amor.jpg" alt="Nós" class="revelar foto-moldura">
 
     <div id="step4" class="revelar mensagem-card">
         "Dizem que as estrelas precisam da escuridão para brilhar mais forte. Talvez o nosso 'agora' precise de silêncio para que a gente se escute melhor. O que vivemos foi real demais para ser um ponto final; prefiro acreditar que é apenas uma vírgula."
@@ -147,47 +169,61 @@
 
     <div id="step5" class="revelar contador-card">
         <span id="dias" class="dias-num">0</span><br>
-        <span style="font-size: 0.75rem; letter-spacing: 2px; color: #ffb3d9;">DIAS DE UMA HISTÓRIA EM CURSO</span>
+        <span style="font-size: 0.8rem; letter-spacing: 2px; color: #ffb3d9;">DIAS DE UMA HISTÓRIA EM CURSO</span>
     </div>
 
-    <div id="step6" class="revelar" style="margin-top: 30px; padding: 10px;">
-        <span style="font-family: 'Great Vibes'; font-size: 2.4rem; color: #ffb3d9; display: block;">
+    <div id="step6" class="revelar" style="margin-top: 30px;">
+        <span style="font-family: 'Great Vibes'; font-size: 2.5rem; color: #ffb3d9; display: block;">
             Alguns capítulos precisam ser lidos sozinhos...
         </span>
-        <span style="font-family: 'Playfair Display'; font-size: 0.85rem; color: rgba(255,255,255,0.7); letter-spacing: 4px; text-transform: uppercase;">
+        <span style="font-family: 'Playfair Display'; font-size: 0.9rem; color: rgba(255,255,255,0.7); letter-spacing: 3px; text-transform: uppercase;">
             Para que o próximo seja escrito juntos.
         </span>
     </div>
 
-    <div id="hint" class="instrucao">Toque na tela para revelar</div>
+    <div id="hint" class="instrucao">Toque para revelar</div>
 
     <script>
         let currentStep = 1;
         const totalSteps = 6;
-        let heartInterval = 600;
         const body = document.getElementById('mainBody');
 
+        // Gerar estrelas ao fundo
+        const starsContainer = document.getElementById('stars-container');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + 'vw';
+            star.style.top = Math.random() * 100 + 'vh';
+            const size = Math.random() * 3 + 'px';
+            star.style.width = size;
+            star.style.height = size;
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            starsContainer.appendChild(star);
+        }
+
         body.addEventListener('click', function(e) {
+            const posX = e.pageX || (e.touches ? e.touches[0].pageX : 0);
+            const posY = e.pageY || (e.touches ? e.touches[0].pageY : 0);
+
             const h = document.createElement('div');
             h.className = 'click-heart';
             h.innerHTML = '❤️';
-            h.style.left = (e.pageX - 15) + 'px';
-            h.style.top = (e.pageY - 15) + 'px';
+            h.style.left = (posX - 15) + 'px';
+            h.style.top = (posY - 15) + 'px';
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 2000);
 
             if (currentStep <= totalSteps) {
                 const el = document.getElementById('step' + currentStep);
-                el.classList.add('visivel');
-                
-                if (currentStep === totalSteps) {
-                    // Mudança nítida de cor no final
-                    body.style.backgroundColor = "#3d102b"; 
-                    body.style.background = "radial-gradient(circle, #5a1e41 0%, #0a0409 100%)";
-                    document.getElementById('hint').style.display = 'none';
-                    heartInterval = 200;
+                if(el) {
+                    el.classList.add('visivel');
+                    if (currentStep === totalSteps) {
+                        body.style.background = "radial-gradient(circle, #3d102b 0%, #000 100%)";
+                        document.getElementById('hint').style.display = 'none';
+                    }
+                    currentStep++;
                 }
-                currentStep++;
             }
         });
 
@@ -196,18 +232,17 @@
             h.className = 'bg-heart';
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = (Math.random() * 3 + 4) + 's';
-            h.style.opacity = (Math.random() * 0.4 + 0.1).toString();
+            h.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            h.style.animationDuration = (Math.random() * 3 + 5) + 's';
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 7000);
+            setTimeout(() => h.remove(), 8000);
         }
-        
-        setInterval(() => { createRain(); }, 600); // Fundo constante
+        setInterval(createRain, 700);
 
         const startDate = new Date(2025, 6, 14); 
         const today = new Date();
         const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
-        document.getElementById('dias').innerText = diffDays > 0 ? diffDays : 0;
+        document.getElementById('dias').innerText = Math.max(0, diffDays);
     </script>
 </body>
 </html>
