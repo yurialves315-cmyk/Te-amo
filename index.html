@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Espaço entre Nós</title>
+    <title>Nosso Céu</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Great+Vibes&display=swap');
 
@@ -15,69 +15,84 @@
             color: #ffffff;
             font-family: 'Playfair Display', serif;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            min-height: 100vh; text-align: center; overflow: hidden;
+            min-height: 100vh; text-align: center; overflow-x: hidden;
             touch-action: manipulation;
         }
 
-        /* Estrelas de Fundo */
+        /* Estrelas */
         .star {
             position: absolute; background: white; border-radius: 50%;
             opacity: 0.5; animation: twinkle var(--duration) infinite;
+            z-index: -1;
         }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        @keyframes twinkle { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.8; } }
 
-        /* Fontes com efeito Glow */
+        /* Fontes com Glow Azul/Branco */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3rem; color: #ffffff; margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 191, 255, 0.5);
+            font-size: 2.8rem; color: #ffffff; margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(0, 162, 255, 0.4);
         }
 
-        .revelar { display: none; opacity: 0; transform: translateY(20px); transition: all 1.5s ease; }
+        /* Fade de 1 segundo exato */
+        .revelar { 
+            display: none; opacity: 0; transform: translateY(15px); 
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out; 
+        }
         .visivel { display: block !important; opacity: 1 !important; transform: translateY(0) !important; }
 
-        .foto-perfil {
-            width: 190px; height: 190px; object-fit: cover;
-            border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.3);
-            margin: 20px 0; box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+        /* Foto sem corte na cabeça */
+        .foto-container {
+            width: 220px;
+            max-height: 300px;
+            margin: 15px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 162, 255, 0.2);
+        }
+        .foto-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain; /* Garante que a foto inteira apareça sem cortes */
         }
 
         .mensagem-card {
-            font-style: italic; font-size: 1.1rem; line-height: 1.8;
+            font-style: italic; font-size: 1rem; line-height: 1.7;
             color: #e0e0e0; max-width: 320px; padding: 10px;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
         }
 
         .contador-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px; border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            width: 280px; margin-top: 15px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px; border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 270px; margin-top: 10px;
         }
 
         .dias-num { 
-            font-size: 3.5rem; font-weight: bold; color: #ffffff; 
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 191, 255, 0.4);
+            font-size: 3.2rem; font-weight: bold; color: #ffffff; 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
         }
 
-        /* Efeito de Clique (Coração Branco com Glow) */
+        /* Coração clássico no clique */
         .click-heart {
-            position: absolute; color: #ffffff; font-size: 25px;
-            pointer-events: none; animation: floatUp 2s forwards; z-index: 1000;
-            text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+            position: absolute; color: #ff4d94; font-size: 28px;
+            pointer-events: none; animation: floatUp 1.5s forwards; z-index: 1000;
+            text-shadow: 0 0 10px rgba(255, 77, 148, 0.5);
         }
         @keyframes floatUp { 
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
+            0% { transform: scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5) rotate(15deg); opacity: 0; }
         }
 
         .instrucao {
-            position: fixed; bottom: 30px; font-size: 0.7rem;
-            letter-spacing: 4px; color: #ffffff; opacity: 0.4; text-transform: uppercase;
+            position: fixed; bottom: 30px; font-size: 0.65rem;
+            letter-spacing: 3px; color: #ffffff; opacity: 0.4;
         }
 
-        audio { width: 250px; filter: invert(1) opacity(0.3); margin-bottom: 20px; }
+        audio { width: 240px; filter: invert(1) brightness(1.5) opacity(0.3); margin-bottom: 10px; }
     </style>
 </head>
 <body id="mainBody">
@@ -88,7 +103,9 @@
         <audio controls><source src="musica.mp3" type="audio/mpeg"></audio>
     </div>
 
-    <img id="step3" src="amor.jpg" alt="Nós" class="revelar foto-perfil">
+    <div id="step3" class="revelar foto-container">
+        <img src="amor.jpg" alt="Nós">
+    </div>
 
     <div id="step4" class="revelar mensagem-card">
         "Dizem que as estrelas precisam da escuridão para brilhar mais forte. Talvez o nosso 'agora' precise de silêncio para que a gente se escute melhor. O que vivemos foi real demais para ser um ponto final; prefiro acreditar que é apenas uma vírgula."
@@ -96,12 +113,12 @@
 
     <div id="step5" class="revelar contador-card">
         <span id="dias" class="dias-num">0</span><br>
-        <span style="font-size: 0.7rem; letter-spacing: 2px; color: #ffffff; opacity: 0.7;">DIAS DE UMA HISTÓRIA EM CURSO</span>
+        <span style="font-size: 0.7rem; letter-spacing: 2px; opacity: 0.6;">DIAS DE UMA HISTÓRIA EM CURSO</span>
     </div>
 
-    <div id="step6" class="revelar" style="margin-top: 30px;">
-        <span style="font-family: 'Great Vibes'; font-size: 2.3rem; color: #ffffff; display: block; text-shadow: 0 0 10px white;">Alguns capítulos precisam ser lidos sozinhos...</span>
-        <span style="font-family: 'Playfair Display'; font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 4px; text-transform: uppercase;">Para que o próximo seja escrito juntos.</span>
+    <div id="step6" class="revelar" style="margin-top: 25px;">
+        <span style="font-family: 'Great Vibes'; font-size: 2.2rem; color: #ffffff; display: block; text-shadow: 0 0 10px white;">Alguns capítulos precisam ser lidos sozinhos...</span>
+        <span style="font-family: 'Playfair Display'; font-size: 0.8rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 3px;">Para que o próximo seja escrito juntos.</span>
     </div>
 
     <div id="hint" class="instrucao">Toque para iluminar</div>
@@ -111,11 +128,11 @@
         const totalSteps = 6;
         const body = document.getElementById('mainBody');
 
-        // Gerar estrelas
-        for (let i = 0; i < 100; i++) {
+        // Gerar céu estrelado
+        for (let i = 0; i < 80; i++) {
             const star = document.createElement('div');
             star.className = 'star';
-            const size = Math.random() * 3 + 'px';
+            const size = Math.random() * 2 + 1 + 'px';
             star.style.width = size;
             star.style.height = size;
             star.style.top = Math.random() * 100 + 'vh';
@@ -130,11 +147,11 @@
 
             const h = document.createElement('div');
             h.className = 'click-heart';
-            h.innerHTML = '✨'; // Estrelinha no clique combina mais com o tema céu
-            h.style.left = (posX - 12) + 'px';
-            h.style.top = (posY - 12) + 'px';
+            h.innerHTML = '❤️';
+            h.style.left = (posX - 15) + 'px';
+            h.style.top = (posY - 15) + 'px';
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 2000);
+            setTimeout(() => h.remove(), 1500);
 
             if (currentStep <= totalSteps) {
                 document.getElementById('step' + currentStep).classList.add('visivel');
