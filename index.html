@@ -3,160 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para você</title>
+    <title>Para Sempre</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap');
+
         * {
-            -webkit-tap-highlight-color: transparent; /* Remove o pisca azul */
+            -webkit-tap-highlight-color: transparent;
             outline: none;
+            box-sizing: border-box;
         }
 
         body {
             margin: 0;
             padding: 20px;
-            background: #0f050d !important;
-            color: #ffffff !important;
-            font-family: 'Georgia', serif;
+            background: radial-gradient(circle, #2b0f23 0%, #000000 100%);
+            color: #ffffff;
+            font-family: 'Playfair Display', serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
+            justify-content: center;
             min-height: 100vh;
+            text-align: center;
             overflow: hidden;
             touch-action: manipulation;
         }
 
-        /* Elementos começam escondidos */
-        .revelar {
-            display: none; /* Usa display none para garantir que não ocupem espaço antes */
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        /* Classe que o JavaScript vai adicionar */
-        .mostrar-agora {
-            display: block !important;
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-
-        .foto-moldura {
-            width: 180px;
-            border-radius: 15px;
-            border: 3px solid #ff4d94;
-            margin-top: 10px;
-            margin-bottom: 20px;
-        }
-
-        .contador-card {
-            background: #1a0a16; 
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #ff4d94;
-            margin: 15px 0;
-            width: 280px;
-        }
-
-        .dias-num {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: #ff4d94 !important;
-        }
-
-        .mensagem-card {
-            font-style: italic;
-            line-height: 1.6;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            border-radius: 15px;
-            max-width: 320px;
-            margin-bottom: 20px;
-            border-left: 4px solid #ff4d94;
-        }
-
-        .instrucao {
-            position: fixed;
-            bottom: 30px;
-            font-size: 0.8rem;
+        /* Estilo da Fonte Romantizada */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
             color: #ffb3d9;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 15px;
-            border-radius: 20px;
-        }
-
-        .heart-click {
-            position: absolute;
-            color: #ff4d94;
-            font-size: 20px;
-            pointer-events: none;
-            z-index: 1000;
-            animation: subir 1.5s forwards;
-        }
-
-        @keyframes subir {
-            to { transform: translateY(-80px); opacity: 0; }
-        }
-    </style>
-</head>
-<body id="tela">
-
-    <img src="amor.jpg" alt="Foto" class="foto-moldura">
-    
-    <div style="width: 280px; margin-bottom: 20px;">
-        <audio controls id="player">
-            <source src="musica.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <h1 id="passo1" class="revelar" style="font-size: 1.3rem;">Para o amor da minha vida!</h1>
-    
-    <div id="passo2" class="revelar contador-card">
-        <span id="dias" class="dias-num">0</span><br>
-        <span style="font-size: 0.8rem;">DIAS DE MUITO AMOR</span>
-    </div>
-
-    <div id="passo3" class="revelar mensagem-card">
-        "Desde que você chegou, eu descobri uma versão de mim que nem sabia que existia. Você me faz querer ser alguém melhor todos os dias, e cada segundo ao seu lado se torna único. Obrigado por tudo!"
-    </div>
-
-    <div id="instrucao" class="instrucao">Toque aqui para revelar...</div>
-
-    <script>
-        let contadorCliques = 1;
-        const total = 3;
-        const tela = document.getElementById('tela');
-
-        // Função principal de clique/toque
-        tela.addEventListener('click', function(e) {
-            // 1. Cria o coração na posição exata
-            const h = document.createElement('div');
-            h.className = 'heart-click';
-            h.innerHTML = '❤️';
-            h.style.left = (e.pageX - 10) + 'px';
-            h.style.top = (e.pageY - 10) + 'px';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 1500);
-
-            // 2. Revela o próximo passo
-            if (contadorCliques <= total) {
-                const elemento = document.getElementById('passo' + contadorCliques);
-                elemento.classList.add('mostrar-agora');
-                contadorCliques++;
-
-                if (contadorCliques > total) {
-                    document.getElementById('instrucao').innerText = "❤️";
-                    setTimeout(() => {
-                        document.getElementById('instrucao').style.display = 'none';
-                    }, 2000);
-                }
-            }
-        });
-
-        // Cálculo dos dias
-        const dataI = new Date(2025, 6, 14); 
-        const hoje = new Date();
-        const dias = Math.floor((hoje - dataI) / (1000 * 60 * 60 * 24));
-        document.getElementById('dias').innerText = dias > 0 ? dias : 0;
-    </script>
-</body>
-</html>
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0
+                                          
