@@ -7,24 +7,34 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        /* Animação de entrada principal */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Animação Suave para a página toda */
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         body {
             font-family: 'Georgia', serif;
+            background: #0f050d; /* Cor de fundo sólida caso o gradiente falhe */
             background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
             color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 1
-            
+            min-height: 100vh;
+            padding: 30px 20px;
+            text-align: center;
+            overflow-x: hidden;
+            /* Aplica a animação aqui no body para garantir que tudo apareça */
+            animation: fadeInPage 1.5s ease-out forwards;
+        }
+
+        .foto-moldura {
+            width: 55%;
+            max-width: 200px;
+            border-radius: 15px;
+            border: 3px solid #ff4d94;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 25px rgba(255, 77, 148, 0.3);
+        }
+        
