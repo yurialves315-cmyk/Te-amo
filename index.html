@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para Sempre</title>
+    <title>Nosso Próximo Capítulo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap');
 
@@ -27,23 +27,24 @@
             text-align: center;
             overflow: hidden;
             touch-action: manipulation;
+            transition: background 4s ease;
         }
 
-        /* Estilo da Fonte Romantizada */
+        /* Título Romantizado */
         h1 {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #ffb3d9;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 8px rgba(255, 179, 217, 0.3);
         }
 
-        /* Elementos Invisíveis Inicialmente */
+        /* Elementos Ocultos */
         .revelar {
             display: none;
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1.5s ease, transform 1.5s ease;
+            transform: translateY(25px);
+            transition: opacity 1.8s ease, transform 1.8s ease;
         }
 
         .visivel {
@@ -54,83 +55,88 @@
 
         .foto-moldura {
             width: 190px;
-            border-radius: 100px 100px 15px 15px; /* Formato elegante */
-            border: 2px solid rgba(255, 179, 217, 0.4);
+            border-radius: 100px 100px 20px 20px;
+            border: 2px solid rgba(255, 179, 217, 0.3);
             margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(255, 77, 148, 0.2);
+            box-shadow: 0 15px 35px rgba(255, 77, 148, 0.2);
+        }
+
+        .mensagem-card {
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            color: #f0f0f0;
+            max-width: 320px;
+            padding: 15px;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .contador-card {
             background: rgba(255, 255, 255, 0.03);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 179, 217, 0.2);
-            width: 260px;
-            margin-top: 15px;
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 179, 217, 0.15);
+            width: 280px;
+            margin-top: 10px;
         }
 
         .dias-num {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
             color: #ff4d94;
-            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 10px rgba(255, 77, 148, 0.5);
         }
 
-        .mensagem-card {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1rem;
-            line-height: 1.8;
-            color: #e0e0e0;
-            max-width: 320px;
-            padding: 15px;
-            letter-spacing: 0.5px;
+        .final-msg {
+            margin-top: 30px;
+            padding: 10px;
         }
 
-        /* Corações de Fundo (Cascata) */
+        /* Corações de Fundo */
         .bg-heart {
             position: fixed;
             top: -10%;
-            color: rgba(255, 77, 148, 0.3);
-            font-size: 15px;
+            color: rgba(255, 77, 148, 0.25);
+            font-size: 18px;
             z-index: -1;
             animation: fall linear infinite;
         }
 
         @keyframes fall {
-            to { transform: translateY(110vh); }
+            to { transform: translateY(110vh) rotate(360deg); }
         }
 
-        /* Coração do Clique */
+        /* Coração ao Clicar */
         .click-heart {
             position: absolute;
             color: #ff4d94;
-            font-size: 25px;
+            font-size: 28px;
             pointer-events: none;
-            animation: floatUp 2s forwards;
+            animation: floatUp 2s ease-out forwards;
             z-index: 1000;
         }
 
         @keyframes floatUp {
             0% { transform: scale(1); opacity: 1; }
-            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+            100% { transform: translateY(-120px) scale(1.8); opacity: 0; }
         }
 
         .instrucao {
             position: fixed;
-            bottom: 40px;
+            bottom: 30px;
             font-family: sans-serif;
-            font-size: 0.7rem;
-            letter-spacing: 2px;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
             color: #ffb3d9;
-            opacity: 0.6;
+            opacity: 0.5;
             text-transform: uppercase;
         }
 
         audio {
-            width: 250px;
-            height: 30px;
-            filter: invert(1) opacity(0.5);
+            width: 260px;
+            height: 35px;
+            filter: invert(1) hue-rotate(180deg) opacity(0.6);
         }
     </style>
 </head>
@@ -144,64 +150,84 @@
         </audio>
     </div>
 
-    <img id="step3" src="amor.jpg" alt="Nós" class="revelar foto-moldura">
+    <img id="step3" src="amor.jpg" alt="Nossa Memória" class="revelar foto-moldura">
 
     <div id="step4" class="revelar mensagem-card">
-        "Desde que você chegou, eu descobri uma versão de mim que nem sabia que existia. Você me faz querer ser alguém melhor todos os dias, e cada segundo ao seu lado se torna único. Obrigado por tudo!"
+        "Dizem que as estrelas precisam da escuridão para brilhar mais forte. Talvez o nosso 'agora' precise de silêncio para que a gente se escute melhor. O que vivemos foi real demais para ser um ponto final; prefiro acreditar que é apenas uma vírgula."
     </div>
 
     <div id="step5" class="revelar contador-card">
         <span id="dias" class="dias-num">0</span><br>
-        <span style="font-size: 0.7rem; letter-spacing: 2px;">DIAS DE HISTÓRIA</span>
+        <span style="font-size: 0.75rem; letter-spacing: 2px; color: #ffb3d9;">DIAS DE UMA HISTÓRIA EM CURSO</span>
     </div>
 
-    <div id="hint" class="instrucao">Toque para sentir...</div>
+    <div id="step6" class="revelar final-msg">
+        <span style="font-family: 'Great Vibes'; font-size: 2.4rem; color: #ffb3d9; display: block;">
+            Alguns capítulos precisam ser lidos sozinhos...
+        </span>
+        <span style="font-family: 'Playfair Display'; font-size: 0.85rem; color: rgba(255,255,255,0.7); letter-spacing: 4px; text-transform: uppercase;">
+            Para que o próximo seja escrito juntos.
+        </span>
+    </div>
+
+    <div id="hint" class="instrucao">Toque na tela para revelar</div>
 
     <script>
         let currentStep = 1;
-        const totalSteps = 5;
+        const totalSteps = 6;
+        let heartInterval = 600;
 
-        // Efeito de Revelação por Clique
-        document.getElementById('mainBody').addEventListener('click', function(e) {
-            // Cria coração no toque
+        const body = document.getElementById('mainBody');
+
+        body.addEventListener('click', function(e) {
+            // Criação do coração no clique
             const h = document.createElement('div');
             h.className = 'click-heart';
             h.innerHTML = '❤️';
-            h.style.left = (e.pageX - 12) + 'px';
-            h.style.top = (e.pageY - 12) + 'px';
+            h.style.left = (e.pageX - 15) + 'px';
+            h.style.top = (e.pageY - 15) + 'px';
             document.body.appendChild(h);
             setTimeout(() => h.remove(), 2000);
 
-            // Revela elementos na ordem solicitada
+            // Revelação sequencial
             if (currentStep <= totalSteps) {
                 const el = document.getElementById('step' + currentStep);
                 el.classList.add('visivel');
-                currentStep++;
-
-                if (currentStep > totalSteps) {
+                
+                // Mudança de clima no último passo
+                if (currentStep === totalSteps) {
+                    body.style.background = "radial-gradient(circle, #4a1a3a 0%, #000000 100%)";
                     document.getElementById('hint').style.display = 'none';
+                    heartInterval = 250; // Aumenta os corações no final
                 }
+                
+                currentStep++;
             }
         });
 
-        // Corações em Cascata (Fundo)
+        // Corações em Cascata
         function createRain() {
             const h = document.createElement('div');
             h.className = 'bg-heart';
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = (Math.random() * 3 + 5) + 's';
-            h.style.opacity = Math.random();
+            h.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            h.style.opacity = (Math.random() * 0.4 + 0.1).toString();
             document.body.appendChild(h);
-            setTimeout(() => h.remove(), 8000);
+            setTimeout(() => h.remove(), 7000);
         }
-        setInterval(createRain, 500);
+        
+        setInterval(() => {
+            createRain();
+        }, heartInterval);
 
-        // Contador
-        const start = new Date(2025, 6, 14); 
+        // Lógica do Contador
+        const startDate = new Date(2025, 6, 14); // 14 de Julho (Mês 6 no JS)
         const today = new Date();
-        const diff = Math.floor((today - start) / (1000 * 60 * 60 * 24));
-        document.getElementById('dias').innerText = diff > 0 ? diff : 0;
+        const diffTime = Math.abs(today - startDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('dias').innerText = diffDays;
+
     </script>
 </body>
 </html>
