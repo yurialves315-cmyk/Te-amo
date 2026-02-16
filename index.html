@@ -54,14 +54,30 @@
             border-left: 3px solid #ff4d94;
         }
 
-        /* Player do SoundCloud */
-        .sc-player {
+        /* Player de Áudio Simplificado */
+        .audio-player-container {
             width: 100%;
             max-width: 320px;
-            height: 120px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            background: rgba(255, 77, 148, 0.15);
+            padding: 15px;
+            border-radius: 50px;
+            border: 1px solid #ff4d94;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .audio-player-container p {
+            font-size: 0.7rem;
+            color: #ffb3d9;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        audio {
+            width: 100%;
+            height: 35px;
+            filter: invert(1) hue-rotate(180deg) brightness(1.5);
         }
 
         .heart {
@@ -72,9 +88,7 @@
             z-index: -1;
             animation: move 5s linear infinite;
         }
-        @keyframes move {
-            to { transform: translateY(-110vh); opacity: 0; }
-        }
+        @keyframes move { to { transform: translateY(-110vh); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -85,7 +99,7 @@
     <div class="data-txt">❤️ Juntos desde 14 de julho de 2025 ❤️</div>
 
     <div class="contador-card">
-        <div id="dias" class="dias-num">0</div>
+        <div id="dias" class="dias-num">...</div>
         <div class="label-dias">Dias de muito amor</div>
     </div>
 
@@ -93,20 +107,23 @@
         "Desde que você chegou, eu descobri uma versão de mim que nem sabia que existia. Você me faz querer ser alguém melhor todos os dias, e cada segundo ao seu lado se torna único."
     </div>
 
-    <div class="sc-player">
-        <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1225875220&color=%23ff4d94&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
-        </iframe>
+    <div class="audio-player-container">
+        <p>Aperte o play: Estresse - Alee</p>
+        <audio controls>
+            <source src="https://files.catbox.moe/ay861p.mp3" type="audio/mpeg">
+            Seu navegador não suporta áudio.
+        </audio>
     </div>
 
     <script>
-        // Cálculo de dias
-        const dataI = new Date('2025-07-14');
+        // Cálculo de dias (Julho é mês 6)
+        const dataInicio = new Date(2025, 6, 14); 
         const hoje = new Date();
-        const diff = Math.floor((hoje - dataI) / (1000 * 60 * 60 * 24));
-        document.getElementById('dias').innerText = diff;
+        const diferencaTempo = hoje.getTime() - dataInicio.getTime();
+        const diferencaDias = Math.floor(diferencaTempo / (1000 * 3600 * 24));
+        document.getElementById('dias').innerText = diferencaDias > 0 ? diferencaDias : 0;
 
-        // Corações de fundo
+        // Corações
         setInterval(() => {
             const h = document.createElement('div');
             h.className = 'heart';
