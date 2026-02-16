@@ -8,7 +8,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Georgia', serif;
-            background: #0f050d;
             background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
             color: #fff;
             display: flex;
@@ -55,12 +54,14 @@
             border-left: 3px solid #ff4d94;
         }
 
-        .video-container {
+        /* Player do SoundCloud */
+        .sc-player {
             width: 100%;
             max-width: 320px;
+            height: 120px;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
         .heart {
@@ -78,7 +79,7 @@
 </head>
 <body>
 
-    <img src="amor.jpg" alt="Foto" class="foto-moldura">
+    <img src="amor.jpg" alt="Nossa Foto" class="foto-moldura">
 
     <h1>Para o amor da minha vida!</h1>
     <div class="data-txt">❤️ Juntos desde 14 de julho de 2025 ❤️</div>
@@ -92,10 +93,29 @@
         "Desde que você chegou, eu descobri uma versão de mim que nem sabia que existia. Você me faz querer ser alguém melhor todos os dias, e cada segundo ao seu lado se torna único."
     </div>
 
-    <div class="video-container">
-        <iframe width="100%" height="180" 
-            src="https://www.youtube.com/embed/jvLKWg0lD6c" 
-            title="Alee - Estresse"
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media
-            
+    <div class="sc-player">
+        <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" 
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1225875220&color=%23ff4d94&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
+        </iframe>
+    </div>
+
+    <script>
+        // Cálculo de dias
+        const dataI = new Date('2025-07-14');
+        const hoje = new Date();
+        const diff = Math.floor((hoje - dataI) / (1000 * 60 * 60 * 24));
+        document.getElementById('dias').innerText = diff;
+
+        // Corações de fundo
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.className = 'heart';
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }, 600);
+    </script>
+</body>
+</html>
