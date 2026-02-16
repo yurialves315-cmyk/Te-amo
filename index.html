@@ -15,33 +15,25 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             text-align: center;
         }
         .fade-in { animation: fadeInPage 2s ease-in-out; }
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeInPage { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
         .foto-moldura {
             width: 60%;
-            max-width: 250px;
+            max-width: 240px;
             border-radius: 15px;
             border: 3px solid #ff4d94;
             box-shadow: 0 10px 25px rgba(255, 77, 148, 0.3);
             margin-bottom: 20px;
         }
-        h1 { font-size: 1.5rem; margin-bottom: 8px; padding: 0 15px; }
-        .data-txt {
-            font-size: 0.9rem;
-            color: #ffb3d9;
-            margin-bottom: 25px;
-            animation: pulseData 2s infinite ease-in-out;
-        }
-        @keyframes pulseData {
-            0%, 100% { opacity: 0.7; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.03); }
-        }
+
+        h1 { font-size: 1.5rem; margin-bottom: 8px; padding: 0 10px; }
+        .data-txt { font-size: 0.9rem; color: #ffb3d9; margin-bottom: 25px; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.03); } }
+
         .contador-card {
             background: rgba(255, 255, 255, 0.05);
             padding: 20px 30px;
@@ -51,11 +43,10 @@
             margin-bottom: 20px;
         }
         .dias-num { font-size: 3.5rem; font-weight: bold; color: #ff4d94; line-height: 1; }
-        .label-dias { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #ffb3d9; }
-        
-        /* Ajuste do Player */
+        .dias-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #ffb3d9; }
+
         .spotify-player { width: 90%; max-width: 330px; margin-top: 10px; }
-        
+
         .heart {
             position: fixed;
             bottom: -10vh;
@@ -73,7 +64,7 @@
 </head>
 <body class="fade-in">
 
-    <img src="amor.jpg" alt="Nossa Foto" class="foto-moldura">
+    <img src="amor.jpg" alt="Nós" class="foto-moldura">
 
     <h1>Para o amor da minha vida!</h1>
     <div class="data-txt">❤️ Juntos desde 14 de julho de 2025 ❤️</div>
@@ -85,7 +76,7 @@
 
     <div class="spotify-player">
         <iframe style="border-radius:12px" 
-            src="https://open.spotify.com/embed/track/2S5S7uD6fC7Wl7OaXnI2eD?utm_source=generator" 
+            src="https://open.spotify.com/embed/track/2S5S7uD6fC7Wl7OaXnI2eD?utm_source=generator&theme=0" 
             width="100%" 
             height="80" 
             frameBorder="0" 
@@ -96,23 +87,22 @@
 
     <script>
         function calcular() {
-            const dataInicio = new Date('2025-07-14T00:00:00');
-            const agora = new Date();
-            const diff = Math.floor((agora - dataInicio) / (1000 * 60 * 60 * 24));
+            const dataInic = new Date('2025-07-14T00:00:00');
+            const hoje = new Date();
+            const diff = Math.floor((hoje - dataInic) / (1000 * 60 * 60 * 24));
             document.getElementById('dias').innerText = diff;
         }
         calcular();
 
-        function criarCoracao() {
+        setInterval(() => {
             const h = document.createElement('div');
             h.classList.add('heart');
             h.innerHTML = '❤️';
             h.style.left = Math.random() * 100 + 'vw';
             h.style.animationDuration = (Math.random() * 2 + 3) + 's';
             document.body.appendChild(h);
-            setTimeout(() => { h.remove(); }, 5000);
-        }
-        setInterval(criarCoracao, 400);
+            setTimeout(() => h.remove(), 5000);
+        }, 400);
     </script>
 </body>
 </html>
