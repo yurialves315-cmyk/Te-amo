@@ -50,11 +50,10 @@
             margin-bottom: 20px;
             line-height: 1.5;
             font-style: italic;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             border-left: 3px solid #ff4d94;
         }
 
-        /* Player de Áudio Simplificado */
         .audio-player-container {
             width: 100%;
             max-width: 320px;
@@ -109,21 +108,19 @@
 
     <div class="audio-player-container">
         <p>Aperte o play: Estresse - Alee</p>
-        <audio controls>
-            <source src="https://files.catbox.moe/ay861p.mp3" type="audio/mpeg">
+        <audio controls preload="auto">
+            <source src="https://cdn.pixabay.com/audio/2022/10/14/audio_90999517e3.mp3" type="audio/mpeg">
             Seu navegador não suporta áudio.
         </audio>
     </div>
 
     <script>
-        // Cálculo de dias (Julho é mês 6)
         const dataInicio = new Date(2025, 6, 14); 
         const hoje = new Date();
         const diferencaTempo = hoje.getTime() - dataInicio.getTime();
         const diferencaDias = Math.floor(diferencaTempo / (1000 * 3600 * 24));
         document.getElementById('dias').innerText = diferencaDias > 0 ? diferencaDias : 0;
 
-        // Corações
         setInterval(() => {
             const h = document.createElement('div');
             h.className = 'heart';
