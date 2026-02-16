@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para o meu amor</title>
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
+            font-family: 'Georgia', serif;
             background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
-            color: white;
-            font-family: 'serif', Georgia, serif;
+            color: #fff;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,102 +18,23 @@
             min-height: 100vh;
             overflow: hidden;
             text-align: center;
-            animation: fadeInPage 2s ease-in;
         }
 
-        @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+        /* Animação de entrada suave */
+        .fade-in {
+            animation: fadeInPage 2s ease-in-out;
+        }
 
-        /* Moldura ajustada para mostrar a foto inteira */
-        .foto-box {
-            width: 80%;
-            max-width: 320px;
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Foto reduzida em 20% (ajustada para 60% da tela) */
+        .foto-moldura {
+            width: 60%;
+            max-width: 250px;
             border-radius: 15px;
             border: 3px solid #ff4d94;
-            box-shadow: 0 0 25px rgba(255, 77, 148, 0.4);
-            margin-bottom: 20px;
-            overflow: hidden;
-        }
-
-        .foto-box img {
-            width: 100%;
-            display: block;
-        }
-
-        h1 { font-size: 1.8rem; margin: 10px 0; }
-
-        /* Data Pulsando */
-        .data-txt {
-            color: #ffb3d9;
-            font-size: 1rem;
-            margin-bottom: 30px;
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-
-        /* Contador */
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 179, 217, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .dias-num { font-size: 4.5rem; color: #ff4d94; font-weight: bold; line-height: 1; }
-        .dias-label { text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; color: #ffb3d9; }
-
-        /* Corações subindo */
-        .heart {
-            position: fixed;
-            bottom: -10%;
-            color: #ff4d94;
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none;
-            animation: moveUp 5s linear infinite;
-        }
-
-        @keyframes moveUp {
-            to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="foto-box">
-        <img src="amor.jpg" alt="Nós">
-    </div>
-
-    <h1>Para o amor da minha vida!</h1>
-    <div class="data-txt">Juntos desde 14 de julho de 2025</div>
-
-    <div class="card">
-        <div id="contagem" class="dias-num">0</div>
-        <div class="dias-label">Dias de Amor</div>
-    </div>
-
-    <script>
-        // Calcular Dias
-        const inicio = new Date('2025-07-14T00:00:00');
-        const hoje = new Date();
-        const diff = Math.floor((hoje - inicio) / (1000 * 60 * 60 * 24));
-        document.getElementById('contagem').innerText = diff;
-
-        // Gerador de corações
-        function addHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerHTML = '❤️';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 5000);
-        }
-        setInterval(addHeart, 400);
-    </script>
-</body>
-</html>
+            box-shadow: 0 10px 25px rgba(255, 77,
+                                         
