@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para o meu amor</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Animação de Entrada da Página */
+        .fade-in {
+            animation: fadeInPage 2s ease-in-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Moldura da Foto (Ajustada para não cortar cabeças) */
+        .foto-moldura {
+            width: 85%;
+            max-width: 300px;
+            border-radius: 20px;
+            border: 3px solid #ff4d94;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        /* Efeito de Corações Subindo */
+        .heart {
+            position: fixed;
+            bottom: -10vh;
+            font-size: 20px;
+            color: #ff4d94;
+            user-select: none;
+            pointer-events: none;
+            animation: moveHearts 5s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes moveHearts {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            padding: 0 20px;
+          
