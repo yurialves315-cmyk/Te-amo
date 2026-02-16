@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para você</title>
     <style>
-        /* Fundo preto sólido imediato para evitar tela branca */
         body {
             margin: 0;
             padding: 20px;
-            background-color: #0f050d; 
-            color: #ffffff;
+            background: #0f050d !important; /* Fundo escuro forçado */
+            color: #ffffff !important; /* Texto branco forçado */
             font-family: sans-serif;
             display: flex;
             flex-direction: column;
@@ -20,43 +19,50 @@
         }
 
         .foto-moldura {
-            width: 180px;
-            height: auto;
+            width: 200px;
             border-radius: 15px;
             border: 3px solid #ff4d94;
-            margin: 20px 0;
+            margin-bottom: 20px;
         }
 
+        /* Garantindo que o card do contador apareça */
         .contador-card {
-            background: rgba(255, 255, 255, 0.1);
+            background: #1a0a16; 
             padding: 20px;
             border-radius: 15px;
-            margin-bottom: 20px;
-            width: 100%;
-            max-width: 300px;
+            border: 1px solid #ff4d94;
+            margin: 20px 0;
+            width: 280px;
         }
 
         .dias-num {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: bold;
-            color: #ff4d94;
+            color: #ff4d94 !important; /* Rosa bem forte */
             display: block;
         }
 
+        .dias-label {
+            color: #ffffff;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        /* Garantindo que o texto da mensagem apareça */
         .mensagem-card {
+            color: #ffffff !important;
             font-style: italic;
             line-height: 1.6;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 15px;
-            border-left: 4px solid #ff4d94;
             max-width: 320px;
             margin-bottom: 20px;
+            border-left: 4px solid #ff4d94;
         }
 
         .audio-container {
-            width: 100%;
-            max-width: 300px;
+            width: 300px;
             margin-top: 10px;
         }
 
@@ -64,7 +70,6 @@
             width: 100%;
         }
 
-        /* Corações simplificados */
         .heart {
             position: fixed;
             bottom: -10px;
@@ -79,11 +84,47 @@
 </head>
 <body>
 
-    <img src="amor.jpg" alt="Nossa Foto" class="foto-moldura">
+    <img src="amor.jpg" alt="Foto" class="foto-moldura">
 
-    <h1 style="font-size: 1.2rem;">Para o amor da minha vida!</h1>
-    <p style="color: #ffb3d9; font-size: 0.8rem; margin-bottom: 20px;">❤️ Juntos desde 14 de julho de 2025 ❤️</p>
+    <h1 style="font-size: 1.4rem; color: #ffffff;">Para o amor da minha vida!</h1>
+    <p style="color: #ffb3d9; margin-bottom: 10px;">❤️ Juntos desde 14 de julho de 2025 ❤️</p>
 
     <div class="contador-card">
-        <span id="dias" class="d
-            
+        <span id="dias" class="dias-num">0</span>
+        <span class="dias-label">DIAS DE MUITO AMOR</span>
+    </div>
+
+    <div class="mensagem-card">
+        "Desde que você chegou, eu descobri uma versão de mim que nem sabia que existia. Você me faz querer ser alguém melhor todos os dias, e cada segundo ao seu lado se torna único, como se o tempo parasse só pra gente se amar. Obrigado por tudo!"
+    </div>
+
+    <div class="audio-container">
+        <audio controls>
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Cálculo de dias simplificado
+        function atualizarContador() {
+            const dataInicio = new Date(2025, 6, 14); // 14 de Julho
+            const hoje = new Date();
+            const diffMilis = hoje - dataInicio;
+            const diffDias = Math.floor(diffMilis / (1000 * 60 * 60 * 24));
+            document.getElementById('dias').innerText = diffDias > 0 ? diffDias : 0;
+        }
+        atualizarContador();
+
+        // Corações de fundo
+        setInterval(() => {
+            const h = document.createElement('div');
+            h.className = 'heart';
+            h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.fontSize = (Math.random() * 10 + 10) + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 5000);
+        }, 800);
+    </script>
+</body>
+</html>
