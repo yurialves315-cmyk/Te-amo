@@ -8,7 +8,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Georgia', serif;
-            background: #0f050d; /* Cor de fundo fixa para não carregar em branco */
+            background: #0f050d;
             background: radial-gradient(circle, #3d1431 0%, #0f050d 100%);
             color: #fff;
             display: flex;
@@ -17,6 +17,7 @@
             min-height: 100vh;
             padding: 30px 20px;
             text-align: center;
+            overflow-x: hidden;
         }
         
         .foto-moldura {
@@ -59,9 +60,9 @@
             max-width: 320px;
             border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        /* Corações de fundo simples */
         .heart {
             position: fixed;
             bottom: -10vh;
@@ -93,28 +94,8 @@
 
     <div class="video-container">
         <iframe width="100%" height="180" 
-            src="https://www.youtube.com/embed/7X86G_eRscM" 
-            frameborder="0" allowfullscreen>
-        </iframe>
-    </div>
-
-    <script>
-        // Cálculo de dias direto e simples
-        const dataI = new Date('2025-07-14');
-        const hoje = new Date();
-        const diff = Math.floor((hoje - dataI) / (1000 * 60 * 60 * 24));
-        document.getElementById('dias').innerText = diff;
-
-        // Criar corações
-        setInterval(() => {
-            const h = document.createElement('div');
-            h.className = 'heart';
-            h.innerHTML = '❤️';
-            h.style.left = Math.random() * 100 + 'vw';
-            h.style.animationDuration = (Math.random() * 2 + 3) + 's';
-            document.body.appendChild(h);
-            setTimeout(() => h.remove(), 5000);
-        }, 600);
-    </script>
-</body>
-</html>
+            src="https://www.youtube.com/embed/jvLKWg0lD6c" 
+            title="Alee - Estresse"
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media
+            
